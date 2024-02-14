@@ -12,14 +12,13 @@ function App() {
     setTodos([...todos,{id:uuidv4(),task:todo, completed:false,isEditing:false}])
   }
   const editTodo=id=>{
-    console.log(' Edit ok');
-
+    
   }
   const deleteTodo=id=>{
     setTodos(todos.filter(todo=>todo.id!==id))
   }
-  const toggleComplete=id=>{
-    console.log(' toggle ok');
+  const toggleComplete=id=>{   
+     setTodos(todos.map(todo=>todo.id===id?{...todo,completed:!todo.completed}:todo))
   }
   return (
    <>
@@ -27,13 +26,11 @@ function App() {
           <div className='bg-violet-300 w-[500px] rounded-lg pt-5 pb-5'>  
               <TodoForm addTodo={addTodo}/>  
               {todos.map((todo,index)=>(
-                  <Todo x={todo} key={index} toggleCompleted={toggleComplete} deleteTodo={deleteTodo} editTodo={editTodo}/>
+                  <Todo x={todo} key={index} toggleCompleted={toggleComplete} deleteTodo={deleteTodo} editTodo={editTodo} addTodo={addTodo}/>
               ))}          
           </div>
-          
      </div>
    </>
   );
 }
-
 export default App;

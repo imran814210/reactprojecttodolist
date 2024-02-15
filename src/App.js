@@ -11,14 +11,15 @@ function App() {
   const addTodo=(todo)=>{
     setTodos([...todos,{id:uuidv4(),task:todo, completed:false,isEditing:false}])
   }
-  const editTodo=id=>{
-    
+  const editTodo=(value,id,modalClose)=>{     
+    setTodos(todos.map(todo=>todo.id===id?{...todo,task:value}:todo))
+    modalClose(false)
   }
   const deleteTodo=id=>{
     setTodos(todos.filter(todo=>todo.id!==id))
   }
   const toggleComplete=id=>{   
-     setTodos(todos.map(todo=>todo.id===id?{...todo,completed:!todo.completed}:todo))
+    setTodos(todos.map(todo=>todo.id===id?{...todo,completed:!todo.completed}:todo))
   }
   return (
    <>
